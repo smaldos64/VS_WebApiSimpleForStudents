@@ -10,7 +10,7 @@ namespace WebApiSimpleForStudents
     {
         public static void Register(HttpConfiguration config)
         {
-            var corsAttr = new EnableCorsAttribute("http://localhost:51539", headers: "*", methods: "*");
+            //var corsAttr = new EnableCorsAttribute("http://localhost:51539", headers: "*", methods: "*");
             config.EnableCors();
             // Web API configuration and services
 

@@ -1,6 +1,6 @@
-﻿#define LocalServer
+﻿#undef LocalServer
 #undef SchoolServer
-#undef UnoEuroServer
+#define UnoEuroServer
 
 using System;
 using System.Collections.Generic;
@@ -14,16 +14,17 @@ using WebApiSimpleForStudents.Models;
 namespace WebApiSimpleForStudents.Controllers
 {
 #if (LocalServer)
-    [EnableCors(origins: "http://localhost:51539", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:62109", headers: "*", methods: "*")]
 #endif
 
 #if (SchoolServer)
-    [EnableCors(origins: "*.*", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://ltpe3.web.techcollege.dk/", headers: "*", methods: "*")]
 #endif
 
-#if (UnoEuroServer)
-    [EnableCors(origins: "http://webapisimpleclient.buchwaldshave34.dk", headers: "*", methods: "*")]
-#endif
+//#if (UnoEuroServer)
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "Content-Type", methods: "GET,POST,PUT,DELETE,OPTIONS")]
+//#endif
 
     public class StudentNameController : ApiController
     {
@@ -48,7 +49,17 @@ namespace WebApiSimpleForStudents.Controllers
         //        jsonString[IndexCounter++] = St
         //    }
         //}
+//#if (LocalServer)
+//        [EnableCors(origins: "http://localhost:62109", headers: "*", methods: "GET")]
+//#endif
 
+//#if (SchoolServer)
+//    [EnableCors(origins: "http://ltpe3.web.techcollege.dk/", headers: "*", methods: "*")]
+//#endif
+
+//#if (UnoEuroServer)
+//    [EnableCors(origins: "*.*", headers: "*", methods: "GET")]
+//#endif
         public List<Object> Get()
         {
             List<object> jSonList = new List<object>();
@@ -88,7 +99,19 @@ namespace WebApiSimpleForStudents.Controllers
         //public void Post([FromBody]string value)
         //{
         //}
+        //#if (LocalServer)
+        //        [EnableCors(origins: "http://localhost:62109", headers: "*", methods: "POST")]
+        //#endif
 
+        //#if (SchoolServer)
+        //    [EnableCors(origins: "http://ltpe3.web.techcollege.dk/", headers: "*", methods: "*")]
+        //#endif
+
+        //#if (UnoEuroServer)
+        //    [EnableCors(origins: "*.*", headers: "*", methods: "POST")]
+        //#endif
+        [HttpPost]
+        //[Route("")]
         public int Post(dynamic json_Object)
         {
             StudentName StudentName_Object = new StudentName();
@@ -115,7 +138,17 @@ namespace WebApiSimpleForStudents.Controllers
         //public void Put(int id, [FromBody]string value)
         //{
         //}
+//#if (LocalServer)
+//        [EnableCors(origins: "http://localhost:62109", headers: "*", methods: "PUT")]
+//#endif
 
+//#if (SchoolServer)
+//    [EnableCors(origins: "http://ltpe3.web.techcollege.dk/", headers: "*", methods: "*")]
+//#endif
+
+//#if (UnoEuroServer)
+//    [EnableCors(origins: "*.*", headers: "*", methods: "PUT")]
+//#endif
         public bool Put(int id, dynamic json_Object)
         {
             StudentName StudentName_Object = db.StudentNames.Find(id);
@@ -144,7 +177,17 @@ namespace WebApiSimpleForStudents.Controllers
         //public void Delete(int id)
         //{
         //}
+//#if (LocalServer)
+//        [EnableCors(origins: "http://localhost:62109", headers: "*", methods: "DELETE")]
+//#endif
 
+//#if (SchoolServer)
+//    [EnableCors(origins: "http://ltpe3.web.techcollege.dk/", headers: "*", methods: "*")]
+//#endif
+
+//#if (UnoEuroServer)
+//    [EnableCors(origins: "*.*", headers: "*", methods: "DELETE")]
+//#endif
         public bool Delete(int id)
         {
             StudentName StudentName_Object = db.StudentNames.Find(id);
